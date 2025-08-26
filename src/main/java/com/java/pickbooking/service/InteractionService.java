@@ -23,18 +23,29 @@ public class InteractionService {
     }
 
     // Thả reaction (like, tym, haha…)
-    public PostReaction react(Long userId, Long postId, PostReaction.ReactionType type) {
+    public PostReaction react(Long userId, Long postId, String type) {
         User user = userRepo.findById(userId).orElseThrow();
         Post post = postRepo.findById(postId).orElseThrow();
-        return reactionRepo.findByUser_UserIdAndPost_PostId(userId, postId)
-                .map(r -> { r.setType(type); return reactionRepo.save(r); })
-                .orElseGet(() -> {
-                    PostReaction newR = new PostReaction();
-                    newR.setUser(user);
-                    newR.setPost(post);
-                    newR.setType(type);
-                    return reactionRepo.save(newR);
-                });
+
+        // Nếu user đã react -> update
+        PostReaction existing = reactionRepo.findByPost_PostIdAndUser_UserId(postId, userId);
+        if (existing != null) {
+            // Nếu type giống nhau -> gỡ reaction (delete)
+            if (existing.getType().equals(type)) {
+                reactionRepo.delete(existing);
+                return null; // hoặc return existing để FE biết đã gỡ
+            }
+            // Nếu khác -> update sang type mới
+            existing.setType(type);
+            return reactionRepo.save(existing);
+        }
+
+        // Nếu chưa có -> tạo mới
+        PostReaction reaction = new PostReaction();
+        reaction.setUser(user);
+        reaction.setPost(post);
+        reaction.setType(type);
+        return reactionRepo.save(reaction);
     }
 
     public List<PostReaction> getReactions(Long postId) {

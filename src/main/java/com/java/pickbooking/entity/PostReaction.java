@@ -25,12 +25,10 @@ public class PostReaction {
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
-    @Enumerated(EnumType.STRING)
-    private ReactionType type;
+    private String type;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public enum ReactionType { LIKE, LOVE, HAHA, WOW, ANGRY }
 
     // Getters & setters
 }

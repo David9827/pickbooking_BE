@@ -19,10 +19,15 @@ public class InteractionController {
 
     // Thả reaction
     @PostMapping("/{postId}/react")
-    public ResponseEntity<PostReaction> react(@PathVariable Long postId,
+    public ResponseEntity<?> react(@PathVariable Long postId,
                                               @RequestParam Long userId,
-                                              @RequestParam PostReaction.ReactionType type) {
-        return ResponseEntity.ok(service.react(userId, postId, type));
+                                              @RequestParam String type) {
+        PostReaction reaction = service.react(userId, postId, type);
+
+        if (reaction == null) {
+            return ResponseEntity.ok(Map.of("message", "Reaction removed"));
+        }
+        return ResponseEntity.ok(reaction);
     }
 
     // Lấy danh sách reaction
@@ -30,12 +35,20 @@ public class InteractionController {
     public ResponseEntity<Map<String, Object>> getReactions(@PathVariable Long postId) {
         List<PostReaction> reactions = service.getReactions(postId);
         Map<String, Long> counts = new HashMap<>();
-        for (PostReaction.ReactionType t : PostReaction.ReactionType.values()) {
-            counts.put(t.name(), reactions.stream().filter(r -> r.getType() == t).count());
+
+        // Danh sách emoji hỗ trợ
+        String[] emojis = {"👍", "❤️", "😂", "😮", "😢", "😡"};
+
+        for (String emoji : emojis) {
+            counts.put(emoji, reactions.stream()
+                    .filter(r -> emoji.equals(r.getType()))
+                    .count());
         }
+
         Map<String, Object> resp = new HashMap<>();
         resp.put("total", reactions.size());
         resp.put("details", counts);
+
         return ResponseEntity.ok(resp);
     }
 
