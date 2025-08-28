@@ -83,6 +83,25 @@ public class PostController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    //lay bai viet theo user_Id: -->
+    @GetMapping("/userId/{user_id}")
+    public ResponseEntity<List<PostResponse>> getPostByUserId(@PathVariable Long user_id) {
+        List<Post> posts = postRepository.findByUser_UserId(user_id, Sort.by(Sort.Direction.DESC, "createdAt") );
+
+        if (posts.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<PostResponse> responses = posts.stream().map(p -> new PostResponse(
+                        p.getPostId(),
+                        p.getContent(),
+                        p.getImageUrl(),
+                        p.getCreatedAt(),
+                        p.getUser(),
+                        reactionRepo.findByPost_PostId(p.getPostId()).size(),
+                        commentRepo.findByPost_PostIdOrderByCreatedAtAsc(p.getPostId()).size()
+                )).toList();
+        return ResponseEntity.ok(responses);
+    }
 
     // Xoá bài viết
     @DeleteMapping("/{id}")
