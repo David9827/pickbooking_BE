@@ -1,32 +1,28 @@
 package com.java.pickbooking.dto;
 
 import com.java.pickbooking.entity.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserDto {
     private Long userId;
-
     private String username;
-
-    private String password;
-
-    private String email;
     private String fullName;
+    private String email;
     private String phone;
+    private String role;
 
-    @Enumerated(EnumType.STRING)
-    private User.Role role = User.Role.USER;
-
-    // Getter & Setter
-    public enum Role {
-        USER, ADMIN
+    public static UserDto fromEntity(User user) {
+        if (user == null) return null;
+        return new UserDto(
+                user.getUserId(),
+                user.getUsername(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getRole().name()  // nếu role là enum
+        );
     }
 }

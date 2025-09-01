@@ -13,13 +13,19 @@ public class Court {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courtId;
+    @Column(nullable = false)
+    private Long cluster_id;
+    @Column(nullable = false)
+    private Integer court_number;
 
+    public enum Status{
+        AVAILABLE, UNAVAILABLE
+    }
+    @Column(nullable = false)
+    private boolean available;
+
+    private String location;
     @Column(nullable = false)
     private String name;
 
-    private String location;
-
-    private boolean available = true; // còn trống hay đã được đặt
-
-    private boolean court_number;
 }

@@ -23,7 +23,7 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody User user) {
         try {
             User newUser = userService.register(user);
-            return ResponseEntity.ok(newUser);
+            return ResponseEntity.ok(null);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

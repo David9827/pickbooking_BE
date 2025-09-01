@@ -1,5 +1,6 @@
 package com.java.pickbooking.service;
 
+import com.java.pickbooking.dto.UserDto;
 import com.java.pickbooking.entity.*;
 import com.java.pickbooking.repository.*;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,7 @@ public class InteractionService {
         c.setContent(content);
         return commentRepo.save(c);
     }
-
+    // lấy comment ra
     public List<Comment> getComments(Long postId) {
         return commentRepo.findByPost_PostIdOrderByCreatedAtAsc(postId);
     }

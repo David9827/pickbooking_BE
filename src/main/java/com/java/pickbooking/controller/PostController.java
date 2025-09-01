@@ -1,6 +1,8 @@
 package com.java.pickbooking.controller;
 
+
 import com.java.pickbooking.dto.PostResponse;
+import com.java.pickbooking.dto.UserDto;
 import com.java.pickbooking.entity.Post;
 import com.java.pickbooking.entity.User;
 import com.java.pickbooking.repository.CommentRepository;
@@ -56,15 +58,13 @@ public class PostController {
     public List<PostResponse> getAllPosts() {
         List<Post> posts = postRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
 
-        return posts.stream().map(p -> new PostResponse(
-                p.getPostId(),
-                p.getContent(),
-                p.getImageUrl(),
-                p.getCreatedAt(),
-                p.getUser(),
-                reactionRepo.findByPost_PostId(p.getPostId()).size(),
-                commentRepo.findByPost_PostIdOrderByCreatedAtAsc(p.getPostId()).size()
-        )).toList();
+        return posts.stream()
+                .map(p -> PostResponse.fromEntity(
+                        p,
+                        reactionRepo.findByPost_PostId(p.getPostId()).size(),
+                        commentRepo.findByPost_PostIdOrderByCreatedAtAsc(p.getPostId()).size()
+                ))
+                .toList();
     }
 
     // Lấy chi tiết bài viết
@@ -76,7 +76,7 @@ public class PostController {
                         p.getContent(),
                         p.getImageUrl(),
                         p.getCreatedAt(),
-                        p.getUser(),
+                        UserDto.fromEntity(p.getUser()),
                         reactionRepo.findByPost_PostId(p.getPostId()).size(),
                         commentRepo.findByPost_PostIdOrderByCreatedAtAsc(p.getPostId()).size()
                 ))
@@ -96,7 +96,7 @@ public class PostController {
                         p.getContent(),
                         p.getImageUrl(),
                         p.getCreatedAt(),
-                        p.getUser(),
+                        UserDto.fromEntity(p.getUser()),
                         reactionRepo.findByPost_PostId(p.getPostId()).size(),
                         commentRepo.findByPost_PostIdOrderByCreatedAtAsc(p.getPostId()).size()
                 )).toList();
