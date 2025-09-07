@@ -7,13 +7,13 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
-
     </parent>
     <groupId>com.java</groupId>
-    <artifactId>pickbooking-backend</artifactId>
+    <artifactId>auth-managerment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pickbooking-backend</name>
-    <description>pickbooking-backend</description>
+    <name>auth-managerment</name>
+    <description>auth-managerment</description>
+    <packaging>jar</packaging>
     <url/>
     <licenses>
         <license/>
@@ -28,6 +28,7 @@
         <url/>
     </scm>
     <properties>
+
         <java.version>17</java.version>
     </properties>
     <dependencies>
@@ -35,7 +36,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -50,12 +60,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot Starter Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.3.2</version> <!-- Thay bằng phiên bản mới nhất nếu cần -->
         </dependency>
     </dependencies>
 
@@ -87,6 +91,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

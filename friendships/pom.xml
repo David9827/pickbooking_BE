@@ -5,15 +5,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
-
     </parent>
     <groupId>com.java</groupId>
-    <artifactId>pickbooking-backend</artifactId>
+    <artifactId>friendships</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pickbooking-backend</name>
-    <description>pickbooking-backend</description>
+    <name>friendships</name>
+    <description>friendships</description>
+    <packaging>jar</packaging>
     <url/>
     <licenses>
         <license/>
@@ -32,8 +32,13 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.java</groupId>
+            <artifactId>auth-managerment</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
@@ -51,11 +56,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>3.3.2</version> <!-- Thay bằng phiên bản mới nhất nếu cần -->
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
     </dependencies>
 
@@ -87,6 +100,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

@@ -60,7 +60,7 @@ public class FriendshipController {
     public ResponseEntity<List<Friendship>> getPendingRequests(@PathVariable Long userId) {
         return ResponseEntity.ok(friendshipService.getPendingRequests(userId));
     }
-    @DeleteMapping("/{friendshipId/remove")
+    @DeleteMapping("/{friendshipId}/remove")
     public ResponseEntity<Void> removeRequest(@PathVariable Long friendshipId){
         friendshipService.removeFriend(friendshipId);
         return ResponseEntity.noContent().build();

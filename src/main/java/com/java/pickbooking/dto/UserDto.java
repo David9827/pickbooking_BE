@@ -3,7 +3,11 @@ package com.java.pickbooking.dto;
 import com.java.pickbooking.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 public class UserDto {
@@ -14,6 +18,7 @@ public class UserDto {
     private String phone;
     private String role;
 
+
     public static UserDto fromEntity(User user) {
         if (user == null) return null;
         return new UserDto(
@@ -22,7 +27,7 @@ public class UserDto {
                 user.getFullName(),
                 user.getEmail(),
                 user.getPhone(),
-                user.getRole().name()  // nếu role là enum
+                user.getRole().name()// nếu role là enum
         );
     }
 }

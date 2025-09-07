@@ -10,4 +10,6 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByUser_UserId(Long userUserId, Sort sort);
+    List<Post> findByContentContainingIgnoreCase(String keyword);
+
 }
