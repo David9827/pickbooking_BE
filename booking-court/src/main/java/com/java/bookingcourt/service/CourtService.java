@@ -1,7 +1,7 @@
-package com.java.authmanagerment.service;
+package com.java.bookingcourt.service;
 
-import com.java.authmanagerment.entity.Court;
-import com.java.authmanagerment.repository.CourtRepository;
+import com.java.bookingcourt.entity.Court;
+import com.java.bookingcourt.repository.CourtRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

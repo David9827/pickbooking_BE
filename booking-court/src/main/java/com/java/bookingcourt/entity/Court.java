@@ -1,4 +1,4 @@
-package com.java.authmanagerment.entity;
+package com.java.bookingcourt.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

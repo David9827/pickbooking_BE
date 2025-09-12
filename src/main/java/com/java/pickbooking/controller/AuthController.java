@@ -1,3 +1,7 @@
+
+// đã chuyển sang auth-managerment ở 8081
+
+
 package com.java.pickbooking.controller;
 
 import com.java.pickbooking.entity.User;

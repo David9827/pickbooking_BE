@@ -1,7 +1,7 @@
-package com.java.authmanagerment.controller;
+package com.java.bookingcourt.controller;
 
-import com.java.authmanagerment.entity.Court;
-import com.java.authmanagerment.service.CourtService;
+import com.java.bookingcourt.entity.Court;
+import com.java.bookingcourt.service.CourtService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
