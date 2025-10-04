@@ -29,4 +29,14 @@ public class CourtController {
     public void deleteCourt(@PathVariable Long id) {
         courtService.deleteCourt(id);
     }
+
+    @GetMapping("/cluster/{clusterId}")
+    public List<Court> getCourtsByClusterId(@PathVariable Long clusterId) {
+        return courtService.getCourtsByClusterId(clusterId);
+    }
+
+    @PutMapping("/{courtId}")
+    public Court updateCourtStatus(@PathVariable Long courtId, @RequestBody boolean available) {
+        return courtService.updateCourtStatus(courtId, available);
+    }
 }

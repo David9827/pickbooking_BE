@@ -13,8 +13,12 @@ public class Court {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courtId;
-    @Column(nullable = false)
-    private Long cluster_id;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cluster_id", referencedColumnName = "clusterId")
+    private Cluster cluster;
+
     @Column(nullable = false)
     private Integer court_number;
 

@@ -2,8 +2,6 @@ package com.java.pickbooking.controller;
 
 import com.java.pickbooking.dto.PostResponse;
 import com.java.pickbooking.dto.UserDto;
-import com.java.pickbooking.entity.Post;
-import com.java.pickbooking.entity.User;
 import com.java.pickbooking.repository.PostRepository;
 import com.java.pickbooking.repository.UserRepository;
 import com.java.pickbooking.repository.CommentRepository;
@@ -37,13 +35,13 @@ public class SearchController {
     public ResponseEntity<Map<String, Object>> search(@RequestParam String keyword) {
         Map<String, Object> result = new HashMap<>();
 
-        // 🔎 Tìm user
+        // Tìm user
         List<UserDto> users = userRepository.findByUsernameContainingIgnoreCaseOrFullNameContainingIgnoreCase(keyword, keyword)
                 .stream()
                 .map(u -> new UserDto(u.getUserId(), u.getUsername(), u.getFullName(), u.getEmail(), u.getPhone(), u.getRole().name()))
                 .toList();
 
-        // 🔎 Tìm post
+        // Tìm post
         List<PostResponse> posts = postRepository.findByContentContainingIgnoreCase(keyword)
                 .stream()
                 .map(p -> new PostResponse(
