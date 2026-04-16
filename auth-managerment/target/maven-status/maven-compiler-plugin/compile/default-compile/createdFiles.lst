@@ -1,0 +1,8 @@
+com\java\authmanagerment\dto\UserDto.class
+com\java\authmanagerment\entity\User$Role.class
+com\java\authmanagerment\controller\UserController.class
+com\java\authmanagerment\controller\AuthController.class
+com\java\authmanagerment\entity\User.class
+com\java\authmanagerment\AuthManagermentApplication.class
+com\java\authmanagerment\repository\UserRepository.class
+com\java\authmanagerment\service\UserService.class

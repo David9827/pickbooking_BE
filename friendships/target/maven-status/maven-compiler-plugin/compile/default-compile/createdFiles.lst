@@ -1,0 +1,9 @@
+com\java\friendships\entity\Friendship.class
+com\java\friendships\entity\User.class
+com\java\friendships\entity\User$Role.class
+com\java\friendships\repository\UserRepository.class
+com\java\friendships\controller\FriendshipController.class
+com\java\friendships\service\FriendshipService.class
+com\java\friendships\entity\FriendshipStatus.class
+com\java\friendships\FriendshipsApplication.class
+com\java\friendships\repository\FriendshipRepository.class
